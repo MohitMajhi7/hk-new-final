@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha
+} from 'react-simple-captcha';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,6 +15,11 @@ export default function Login() {
   const [error, setError] = useState('');
   const { login, user } = useAuth();
   const navigate = useNavigate();
+
+  // Load CAPTCHA when page loads
+  useEffect(() => {
+    loadCaptchaEnginge(6); // generate 6 letters captcha
+  }, []);
 
   // Redirect if already logged in
   useEffect(() => {
@@ -36,17 +47,25 @@ export default function Login() {
     e.preventDefault();
     setError('');
 
+    const captchaValue = document.getElementById('captcha-input').value;
+
+    // Validate CAPTCHA
+    if (validateCaptcha(captchaValue) === false) {
+      setError("Invalid CAPTCHA. Try again.");
+      loadCaptchaEnginge(6); // reload new captcha
+      return;
+    }
+
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
     }
 
     const result = login(email, password, role);
-    
-    if (result.success) {
-      // Navigation handled by useEffect
-    } else {
+
+    if (!result.success) {
       setError(result.error);
+      loadCaptchaEnginge(6); // reload on failed login
     }
   };
 
@@ -54,12 +73,12 @@ export default function Login() {
     <div className="auth-container">
       <div className="auth-card">
         <h1>Login to CareConnect</h1>
-        
+
         {error && (
-          <div style={{ 
-            padding: 'var(--space-2)', 
-            background: '#FEE2E2', 
-            color: '#991B1B', 
+          <div style={{
+            padding: 'var(--space-2)',
+            background: '#FEE2E2',
+            color: '#991B1B',
             borderRadius: 'var(--radius)',
             marginBottom: 'var(--space-2)'
           }}>
@@ -68,6 +87,7 @@ export default function Login() {
         )}
 
         <form onSubmit={handleSubmit}>
+          {/* Email */}
           <div className="form-group">
             <label htmlFor="email" className="label">Email</label>
             <input
@@ -81,6 +101,7 @@ export default function Login() {
             />
           </div>
 
+          {/* Password */}
           <div className="form-group">
             <label htmlFor="password" className="label">Password</label>
             <input
@@ -94,6 +115,7 @@ export default function Login() {
             />
           </div>
 
+          {/* Role */}
           <div className="form-group">
             <label htmlFor="role" className="label">Role</label>
             <select
@@ -106,8 +128,21 @@ export default function Login() {
               <option value="Admin">Admin</option>
               <option value="Donor">Donor</option>
               <option value="Recipient">Recipient</option>
-              <option value="Logistics">Logistics Coordinator</option>
+              <option value="Logistics">Logistics</option>
             </select>
+          </div>
+
+          {/* CAPTCHA */}
+          <div className="form-group">
+            <label className="label">Captcha</label>
+            <LoadCanvasTemplate />
+            <input
+              type="text"
+              id="captcha-input"
+              className="input"
+              placeholder="Enter CAPTCHA"
+              required
+            />
           </div>
 
           <button type="submit" className="btn primary" style={{ width: '100%' }}>
@@ -119,10 +154,10 @@ export default function Login() {
           New here? <Link to="/signup">Create an account</Link>
         </div>
 
-        <div style={{ 
-          marginTop: 'var(--space-3)', 
-          padding: 'var(--space-2)', 
-          background: 'var(--gray-100)', 
+        <div style={{
+          marginTop: 'var(--space-3)',
+          padding: 'var(--space-2)',
+          background: 'var(--gray-100)',
           borderRadius: 'var(--radius)',
           fontSize: '0.85rem'
         }}>

@@ -151,7 +151,7 @@ export default function Signup() {
             >
               <option value="Donor">Donor</option>
               <option value="Recipient">Recipient</option>
-              <option value="Logistics">Logistics Coordinator</option>
+              <option value="Logistics">Logistics</option>
               <option value="Admin">Admin</option>
             </select>
           </div>
