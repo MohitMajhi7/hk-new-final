@@ -37,7 +37,156 @@ npm run dev
 ```
 
 **Edit a file directly in GitHub**
+# CareConnect - Emergency Aid Distribution Platform
 
+## 🚀 Live Deployment
+
+**Application Link:** https://help-bridge-20-lrzh2ly78-mohits-projects-dc27f4af.vercel.app
+
+The application is deployed and **accessible to anyone without restrictions**.
+
+## Project Overview
+
+CareConnect is a multi-role emergency aid distribution platform connecting:
+- **Donors** - List and donate items
+- **Recipients** - Request needed items
+- **Admins** - Approve/oversee operations
+- **Logistics Coordinators** - Manage shipments and deliveries
+
+## 📊 Features
+
+✅ Multi-role authentication system  
+✅ Role-based access control & protected routes  
+✅ Complete CRUD operations for donations and requests  
+✅ Real-time data persistence with localStorage  
+✅ Responsive UI with professional design system  
+✅ Admin dashboard with analytics  
+✅ Shipment tracking and inventory management  
+✅ Search and filtering capabilities  
+
+## Demo Accounts (for testing)
+
+```
+Admin:      admin@aid.com / admin123
+Donor:      donor@aid.com / donor123
+Recipient:  recipient@aid.com / recipient123
+Logistics:  logistics@aid.com / logistics123
+```
+
+## GitHub Repository
+
+**Repo:** https://github.com/MohitMajhi7/hk-new-final
+
+Branches:
+- `main` - Production-ready code
+- `develop` - Integration branch
+- `feature/improve-auth` - Sample feature branch
+
+## Tech Stack
+
+- **Frontend:** React 18, Vite, TypeScript
+- **Styling:** Tailwind CSS, shadcn/ui components
+- **State:** Context API, Custom Hooks
+- **Persistence:** localStorage
+- **Deployment:** Vercel
+
+## 🛠 Local Setup & Development
+
+### Prerequisites
+- Node.js 16+ and npm installed
+
+### Installation
+
+```sh
+# Clone the repository
+git clone https://github.com/MohitMajhi7/hk-new-final.git
+cd hk-new-final
+
+# Install dependencies
+npm install
+```
+
+### Development Server
+
+```sh
+npm run dev
+```
+
+Visit `http://localhost:5173` and log in with demo credentials.
+
+### Build for Production
+
+```sh
+npm run build
+```
+
+Output will be in `dist/` directory.
+
+### Linting
+
+```sh
+npm run lint
+```
+
+## 📋 Project Structure
+
+```
+src/
+├── pages/              # Page components (dashboards, auth)
+├── context/            # Global state (Auth, Donations)
+├── components/         # Reusable components & UI library
+├── hooks/              # Custom React hooks
+├── data/               # Seed data and constants
+├── App.jsx             # Root component with routing
+└── index.css           # Global styles
+```
+
+## 🚀 Deployment
+
+Deployed on **Vercel** with automatic builds from GitHub.
+
+### Redeploy Changes
+
+```bash
+# Push to main branch (auto-deploys)
+git add .
+git commit -m "feat: your feature description"
+git push origin main
+```
+
+Changes merge to main will automatically trigger a Vercel deployment.
+
+## 📝 Git Workflow
+
+### Creating Features
+
+```bash
+# Create and push feature branch
+git checkout -b feature/your-feature-name
+git add .
+git commit -m "feat(scope): short description"
+git push -u origin feature/your-feature-name
+
+# Create Pull Request on GitHub (develop → main workflow)
+```
+
+### Commit Message Convention
+
+```
+feat(scope): add new feature
+fix(scope): fix a bug
+docs: update documentation
+chore: maintenance tasks
+refactor: code improvements
+```
+
+## 🤝 Contributing
+
+1. Fork or clone the repo
+2. Create a feature branch: `git checkout -b feature/name`
+3. Commit changes: `git commit -m "feat: description"`
+4. Push to branch: `git push origin feature/name`
+5. Open a Pull Request
 - Navigate to the desired file(s).
 - Click the "Edit" button (pencil icon) at the top right of the file view.
 - Make your changes and commit the changes.
@@ -62,7 +211,6 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/1e9e30ed-32ba-4f65-9197-5453d2a6ab29) and click on Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
